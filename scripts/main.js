@@ -1,9 +1,9 @@
-var money=1000; 
-var income="инвестиции";
-var addExpenses="ЖКХ, налоги, транспорт";
-var deposit=true;
-var mission=500000;
-var period=12;
+let money=1000; 
+let income="инвестиции";
+let addExpenses="ЖКХ, налоги, транспорт";
+let deposit=true;
+let mission=500000;
+let period=12;
 
 console.log(money,income,deposit);
 
@@ -14,5 +14,5 @@ console.log(`Период равен ${period} месяцев. Цель зара
 addExpenses = addExpenses.toLocaleLowerCase().split(', ');
 console.log(addExpenses);
 
-var budgetDay = money / 30;
+let budgetDay = money / 30;
 console.log(budgetDay);
