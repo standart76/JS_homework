@@ -6,41 +6,48 @@ let deposit=true;
 let mission=500000;
 let period=12;
 
+function getExpensesMonth(){//#1 функция без явных аргументов для универсальности
+    let sum=0;
+    let args=arguments[0];
+	for (var i = 0; i < args.length; i++) {
+		sum+=Number(args[i]);
+    }
+	return sum;
+}
+
+function getAccumulatedMonth(money, exp){//#2 
+	return money-getExpensesMonth(exp);
+}
+
 console.log(typeof money,typeof income,typeof deposit);
 
-console.log(addExpenses.length);
-
-console.log(`Период равен ${period} месяцев. Цель заработать ${mission} рублей.`);
 
 addExpenses = addExpenses.toLocaleLowerCase().split(', ');
 console.log(addExpenses);
 
-let budgetDay = money / 30;
-console.log(budgetDay);
-
-//lesson03
-money=prompt("Ваш месячный доход?","70000");//#2
-addExpenses=prompt("Перечислите возможные расходы за рассчитываемый период через запятую", "ЖКХ, налоги, транспорт");//#3
-deposit=confirm("Есть ли у вас депозит в банке?");//#4
-
-let expenses1 = prompt("Введите обязательную статью расходов?(1)","Машина");//#5
+money=prompt("Ваш месячный доход?","70000");
+addExpenses=prompt("Перечислите возможные расходы за рассчитываемый период через запятую", "ЖКХ, налоги, транспорт");
+deposit=confirm("Есть ли у вас депозит в банке?");
+let expenses1 = prompt("Введите обязательную статью расходов?(1)","Машина");
 let amount1 = prompt("Ваш месячный доход?(1)","20000");
 let expenses2 = prompt("Введите обязательную статью расходов?(2)","Продукты");
 let amount2 = prompt("Ваш месячный доход?(2)","10000");
 
-let budgetMonth = money-amount1-amount2;//#6
-console.log("Бюджет на месяц:",budgetMonth);
+let accumulatedMonth = getAccumulatedMonth(money, [amount1, amount2]);//#3
 
-console.log("Цель будет достигнута за",Math.ceil(mission/budgetMonth), "месяцев");//#7
-budgetDay = Math.floor(budgetMonth / 30);//#8
-console.log("Бюджет на день:",budgetDay, "месяцев");
-
-if(budgetDay>=1200){//#9
-	console.log("У вас высокий уровень дохода");
-}else if(budgetDay>=600 && budgetDay<1200){
-	console.log("У вас средний уровень дохода");
-}else if(budgetDay>=0 && budgetDay<600){
-	console.log("К сожалению у вас уровень дохода ниже среднего");
-}else{
-	console.log("Что то пошло не так");
+function getTargetMonth(money, mission){//#4
+	return Math.ceil(mission/money);
 }
+
+let budgetDay = Math.floor(accumulatedMonth / 30);//#6
+
+console.log('Расходы за месяц', getExpensesMonth([amount1, amount2]));
+
+console.log('Срок достижения цели', getTargetMonth(money,mission));
+
+console.log("Бюджет на день:",budgetDay);
+
+
+/*
+несяно где инфа об объявлении getStatusIncome, в какому уроке?
+*/
