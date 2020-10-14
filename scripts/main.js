@@ -6,7 +6,7 @@ let deposit=true;
 let mission=500000;
 let period=12;
 
-function getExpensesMonth(){//#1 функция без явных аргументов для универсальности
+function getExpensesMonth(){//#1
     let sum=0;
     let args=arguments[0];
 	for (var i = 0; i < args.length; i++) {
@@ -19,11 +19,15 @@ function getAccumulatedMonth(money, exp){//#2
 	return money-getExpensesMonth(exp);
 }
 
-console.log(typeof money,typeof income,typeof deposit);
+let showTypeOf = function(data){
+	console.log(data, typeof data);
+};
 
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
 
-addExpenses = addExpenses.toLocaleLowerCase().split(', ');
-console.log(addExpenses);
+console.log(addExpenses.toLocaleLowerCase().split(', '));
 
 money=prompt("Ваш месячный доход?","70000");
 addExpenses=prompt("Перечислите возможные расходы за рассчитываемый период через запятую", "ЖКХ, налоги, транспорт");
@@ -43,11 +47,21 @@ let budgetDay = Math.floor(accumulatedMonth / 30);//#6
 
 console.log('Расходы за месяц', getExpensesMonth([amount1, amount2]));
 
-console.log('Срок достижения цели', getTargetMonth(money,mission));
+console.log('Срок достижения цели', getTargetMonth(accumulatedMonth,mission));
 
 console.log("Бюджет на день:",budgetDay);
 
 
-/*
-несяно где инфа об объявлении getStatusIncome, в какому уроке?
-*/
+let getStatusIncome=function(){
+	if(budgetDay>=1200){
+		return "У вас высокий уровень дохода";
+	}else if(budgetDay>=600 && budgetDay<1200){
+		return "У вас средний уровень дохода";
+	}else if(budgetDay>=0 && budgetDay<600){
+		return "К сожалению у вас уровень дохода ниже среднего";
+	}else{
+		return "Что то пошло не так";
+	}
+};
+
+console.log(getStatusIncome());
