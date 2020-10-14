@@ -13,7 +13,7 @@ let money,
 
 
 let start = function(){
-	do{//#1
+	do{ //#1
 		money = prompt("Ваш месячный доход?");
 	}while(!isNumber(money));
 };
@@ -22,13 +22,13 @@ start();
 let expenses = [];
 let getExpensesMonth = function (){
     let sum = 0, price = 0;
-	for (var i = 0; i < 3; i++) {
+	for (var i = 0; i < 2; i++) {
 		expenses[i] = prompt("Введите обязательную статью расходов?");
-		price = prompt('Во сколько это обойдется?');//#2
-		while(!isNumber(price)){
-			price = prompt('Во сколько это обойдется?');
-		}
-		sum += price;
+		do{ //#2
+			price = prompt("Во сколько это обойдется?");
+		}while(!isNumber(price));
+
+		sum += +price;
 	}
 	console.log(expenses);
 	return sum;
@@ -36,8 +36,8 @@ let getExpensesMonth = function (){
 
 let expensesAmount = getExpensesMonth();
 
-let getAccumulatedMonth = function (){ 
-	return money-expensesAmount;
+let getAccumulatedMonth = function (money,expense){ 
+	return money-expense;
 };
 
 let showTypeOf = function(data){
@@ -53,7 +53,7 @@ deposit=confirm("Есть ли у вас депозит в банке?");
 
 console.log(addExpenses.toLocaleLowerCase().split(', '));
 
-let accumulatedMonth = getAccumulatedMonth(money);
+let accumulatedMonth = getAccumulatedMonth(money, expensesAmount);
 
 let getTargetMonth = function (money, mission){
 	return Math.ceil(mission / money);
