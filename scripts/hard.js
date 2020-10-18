@@ -1,16 +1,20 @@
 'use strict';
+//#1
+const arr = ['123642', '237906', '796031', '1346975', '23549681', '4660247', '5465137'];
 
-const str = prompt('Введите строку!!!','Какой-то произвольный текст большого размера');
+for(let a of arr){
+    if(a.charAt(0) === '2' || a.charAt(0) === '4'){
+        console.log( a);
+    }
+}
 
-const checkStr = function(a){
-    if(isNaN(a)){
-        alert('Вы ввели не строку!');
-    }
-    a = a.trim();
-    if(a.length > 30){
-        console.log(a.slice(0,30)+'...');
-    }else{
-        console.log(a);
-    }
-};
-checkStr(str);
+//#2
+numSimple:
+for(let i = 2; i <= 100; i++){
+        for(let j = 2; j <= Math.sqrt(i); j++){
+            if(i % j === 0){
+                continue numSimple;
+            }
+        }
+        console.log('Число ', i, 'Делители этого числа: 1 и', i);
+}
