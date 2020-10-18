@@ -1,32 +1,40 @@
-let num = 266219;
+'use strict';
 
-num=getArrayNums(num); //получение "массива" разрядов исходного числа
-num=getMultiplication(num);//получение перемножения разрядов исходного числа 
-console.log(num);
-num=num**3; //возведение в 3ю степень
-
-console.log((num+'').substr(0,2)); //вывод в консоль первых двух цифр итогового числа
-
-//функция для получения массива разрядов входящего числа
-function getArrayNums(n){
-    let arr=[];
-    let shiftedNum, resNum;
-
-    do{
-        shiftedNum = Math.floor(n / 10); //остаток числа(без последней цифры)
-        resNum = n - shiftedNum * 10; //получение последнего разряда числа
-        arr.unshift(resNum); //запись в начало массива
-        n = shiftedNum;
-    } while (n>0);
-
-    return arr;
+const lang = ['en', 'ru'];
+const daysArr = [['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']];
+const daysObj = {
+    'en': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    'ru': ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+};
+let userLang = prompt('Введите нужную локализацию локализацию(en/ru)','ru');
+//#1
+console.log('a. условный оператор');
+if(userLang === 'en'){
+    console.log(daysArr[0]);
+}else if(userLang === 'ru'){
+    console.log(daysArr[1]);
+}else{
+    console.log('ошибка при вводе языка');
 }
 
-//функция для перемножения элементов объекта
-function getMultiplication(n) {
-    let res = 1;
-    for ( let num in n) {
-        res *= n[num];
-    }
-    return res;
+console.log('b. конструкция "switch"');
+switch(userLang){
+    case 'en': 
+        console.log(daysArr[0]); 
+        break;
+    case 'ru': 
+        console.log(daysArr[1]); 
+        break;
+    default: 
+        console.log('ошибка при вводе языка');
 }
+
+console.log('c. многомерный массив');
+console.log(daysObj[userLang]);
+
+//#2
+const namePerson = prompt('Введите свое имя');
+namePerson === 'Артем' ? 
+    console.log('Директор') : 
+    namePerson === 'Максим' ? console.log('Преподаватель') : console.log('Студент');
