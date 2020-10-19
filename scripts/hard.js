@@ -3,7 +3,7 @@
 const str = prompt('Введите строку!!!','Какой-то произвольный текст большого размера');
 
 const checkStr = function(a){
-    if(isNaN(a)){
+    if(!isNaN(a)){
         alert('Вы ввели не строку!');
     }
     a = a.trim();
