@@ -1,0 +1,27 @@
+'use strict';
+
+const startBtn = document.getElementById('start'),
+ incomeAdd = document.getElementsByTagName("button")[0],
+ expensesAdd = document.getElementsByTagName("button")[1],
+ depositCheck = document.querySelector('#deposit-check'),
+ additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
+ budgetDayValue = document.getElementsByClassName('.budget_dayValue')[0],
+ expensesMonthValue = document.getElementsByClassName('expenses_monthValue')[0],
+ additionalIncomeValue = document.getElementsByClassName('additional_incomeValuee')[0],
+ additionalExpensesValue = document.getElementsByClassName('additional_expensesValue')[0],
+ incomePeriodValue = document.getElementsByClassName('income_periodValue')[0],
+ targetMonthValue = document.getElementsByClassName('target_monthValue')[0],
+ budgetMonthValue = document.querySelector('.budget_month-value'),
+ salaryAmount = document.querySelector('.salary-amount'),
+ incomeTitle = document.querySelector('.income-title'),
+ incomeAmount = document.querySelector('.income-amount'),
+ additionalIncomeItem1 = document.querySelectorAll('.budget_month-value')[0],
+ additionalIncomeItem2 = document.querySelectorAll('.budget_month-value')[1],
+ expensesTitle = document.querySelector('.expenses-title'),
+ expensesAmount = document.querySelector('.expenses-amount'),
+ additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+ depositAmount = document.querySelector('.deposit-amount'),
+depositPercent = document.querySelector('.deposit-percent'),
+targetAmount = document.querySelector('.target-amount'),
+periodSelect = document.querySelector('.period-select');
+
