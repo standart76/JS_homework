@@ -1,27 +1,32 @@
 'use strict';
 
-const startBtn = document.getElementById('start'),
- incomeAdd = document.getElementsByTagName("button")[0],
- expensesAdd = document.getElementsByTagName("button")[1],
- depositCheck = document.querySelector('#deposit-check'),
- additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
- budgetDayValue = document.getElementsByClassName('.budget_dayValue')[0],
- expensesMonthValue = document.getElementsByClassName('expenses_monthValue')[0],
- additionalIncomeValue = document.getElementsByClassName('additional_incomeValuee')[0],
- additionalExpensesValue = document.getElementsByClassName('additional_expensesValue')[0],
- incomePeriodValue = document.getElementsByClassName('income_periodValue')[0],
- targetMonthValue = document.getElementsByClassName('target_monthValue')[0],
- budgetMonthValue = document.querySelector('.budget_month-value'),
- salaryAmount = document.querySelector('.salary-amount'),
- incomeTitle = document.querySelector('.income-title'),
- incomeAmount = document.querySelector('.income-amount'),
- additionalIncomeItem1 = document.querySelectorAll('.budget_month-value')[0],
- additionalIncomeItem2 = document.querySelectorAll('.budget_month-value')[1],
- expensesTitle = document.querySelector('.expenses-title'),
- expensesAmount = document.querySelector('.expenses-amount'),
- additionalExpensesItem = document.querySelector('.additional_expenses-item'),
- depositAmount = document.querySelector('.deposit-amount'),
-depositPercent = document.querySelector('.deposit-percent'),
-targetAmount = document.querySelector('.target-amount'),
-periodSelect = document.querySelector('.period-select');
+const booksList = document.querySelector('.books'),
+books = document.querySelectorAll('.book'),
+listSecondBook = books[0].querySelectorAll('li'),
+listFifthBook = books[5].querySelectorAll('li'),
+listSixthBook = books[2].querySelectorAll('li'),
+newListItem = listSixthBook[9].cloneNode(true);
+
+
+booksList.prepend(books[1]);
+booksList.append(books[2]);
+books[3].before(books[4]);
+
+document.body.style.backgroundImage = "url(/image/you-dont-know-js.jpg)";
+
+books[4].querySelector('a').textContent = 'Книга 3. this и Прототипы Объектов';
+
+document.querySelector('.adv').remove();
+
+listSecondBook[9].after(listSecondBook[2]);
+listSecondBook[3].after(listSecondBook[6]);
+listSecondBook[6].after(listSecondBook[8]);
+
+listFifthBook[1].after(listFifthBook[9]);
+listFifthBook[4].after(listFifthBook[2]);
+listFifthBook[7].after(listFifthBook[5]);
+
+
+newListItem.textContent = 'Глава 8: За пределами ES6';
+listSixthBook[9].before(newListItem);
 
