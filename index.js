@@ -25,7 +25,9 @@ let startBtn = document.getElementById('start'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select'),
     incomeItems = document.querySelectorAll('.income-items'),
-    periodAmount = document.querySelector('.period-amount');
+    periodAmount = document.querySelector('.period-amount'),
+    inputListStr = document.querySelectorAll('input[placeholder="Наименование"'),//#2
+    inputListNum = document.querySelectorAll('input[placeholder="Сумма"');//#3
 
     const isNumber = function(n){
         return !isNaN(parseFloat(n)) && isFinite(n);
@@ -85,20 +87,24 @@ let startBtn = document.getElementById('start'),
             additionalIncomeValue.value = appData.addIncome.join(', ');
             targetMonthValue.value = appData.getTargetMonth();
             incomePeriodValue.value = appData.calcSavedMoney();
-            periodSelect.addEventListener('change', function(){//#5
+            periodSelect.addEventListener('change', function(){
                 incomePeriodValue.value = appData.calcSavedMoney();
             });
         },
         addExpensesBlock: function(){
             let cloneExpensesItem = expensesItems[0].cloneNode(true);
+            cloneExpensesItem.querySelector('.expenses-title').value = '';//#1
+            cloneExpensesItem.querySelector('.expenses-amount').value = '';//#1
             expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
             expensesItems = document.querySelectorAll('.expenses-items');
             if(expensesItems.length === 3){
                 expensesPlus.style.display = 'none';
             }
         },
-        addIncomeBlock: function(){//#2
+        addIncomeBlock: function(){
             let cloneIncomeItem = incomeItems[0].cloneNode(true);
+            cloneIncomeItem.querySelector('.income-amount').value = '';//#1
+            cloneIncomeItem.querySelector('.income-title').value = '';//#1
             incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
             incomeItems = document.querySelectorAll('.income-items');
             if(incomeItems.length === 3){
@@ -114,7 +120,7 @@ let startBtn = document.getElementById('start'),
                 }
             });
         },
-        getIncome: function(){//#1
+        getIncome: function(){
             incomeItems.forEach(function(item){
                 let itemIncome = item.querySelector('.income-title').value;
                 let cashIncome = item.querySelector('.income-amount').value;
@@ -148,7 +154,7 @@ let startBtn = document.getElementById('start'),
         },
         getBudget: function (){ 
             appData.budgetMonth = +appData.budget + appData.incomeMonth - appData.expensesMonth;
-            appData.budgetDay = Math.floor(appData.budgetMonth / 30);//#3
+            appData.budgetDay = Math.floor(appData.budgetMonth / 30);
         },
         getTargetMonth: function (){
             return Math.ceil(targetAmount.value / appData.budgetMonth);
@@ -186,7 +192,7 @@ let startBtn = document.getElementById('start'),
         }
     };
 
-    startBtn.addEventListener('mouseover', ()=>{//#6
+    startBtn.addEventListener('mouseover', ()=>{
         if(salaryAmount.value === ''){
             startBtn.removeEventListener('click', appData.start);
         } else {
@@ -197,15 +203,17 @@ let startBtn = document.getElementById('start'),
     expensesPlus.addEventListener('click', appData.addExpensesBlock);
     incomePlus.addEventListener('click', appData.addIncomeBlock);
 
-    periodSelect.addEventListener('input', function(){//#4
+    periodSelect.addEventListener('input', function(){
         periodAmount.textContent = periodSelect.value;
     });
 
-
-    // if(appData.getTargetMonth() > 0){
-    //     console.log('Срок достижения цели', appData.getTargetMonth()); 
-    // } else { 
-    //     console.log('Цель не будет достигнута');
-    // }
-
-    
+    inputListStr.forEach((item)=>{//#2
+        item.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^А-Яа-я\s,.;:-]/gi,'');
+        });
+    });
+    inputListNum.forEach((item)=>{//#3
+        item.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/gi,'');
+        });
+    });
