@@ -87,7 +87,7 @@ let startBtn = document.getElementById('start'),
             additionalIncomeValue.value = appData.addIncome.join(', ');
             targetMonthValue.value = appData.getTargetMonth();
             incomePeriodValue.value = appData.calcSavedMoney();
-            periodSelect.addEventListener('change', function(){
+            periodSelect.addEventListener('input', function(){
                 incomePeriodValue.value = appData.calcSavedMoney();
             });
         },
