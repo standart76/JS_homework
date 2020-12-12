@@ -51,7 +51,6 @@ let startBtn = document.getElementById('start'),
                 startBtn.setAttribute('disabled','true');
                 return;
             }
-            //this.checkDepositPercent();
             this.budget = +salaryAmount.value;
             this.getExpenses();
             this.getIncome();
@@ -109,7 +108,10 @@ let startBtn = document.getElementById('start'),
             incomePeriodValue.value = '';
             periodSelect.value = 1;
             periodAmount.textContent = 1;
-            depositCheck.checked = false;
+            if(depositCheck.checked){
+                //depositCheck.dispatchEvent(new Event('change'));
+                depositCheck.click();
+            }
             depositCheck.readOnly = false;
         }
 
@@ -219,9 +221,10 @@ let startBtn = document.getElementById('start'),
         checkDepositPercent(){
             if(isNaN(depositPercent.value) || +depositPercent.value < 0 || +depositPercent.value > 100){
                 alert('Введите корректное значение в поле проценты');
-                startBtn.setAttribute('disabled','true');
-            }else{
-                startBtn.removeAttribute('disabled');
+                depositPercent.value ='';
+            //     startBtn.setAttribute('disabled','true');
+            // }else{
+            //     startBtn.removeAttribute('disabled');
             }
         }
         changePercent(){
@@ -261,7 +264,7 @@ let startBtn = document.getElementById('start'),
         eventsListeners(){
             startBtn.addEventListener('click', this.start.bind(this));
   
-            resetBtn.addEventListener('click', this.reset);
+            resetBtn.addEventListener('click', this.reset.bind(this));
         
             expensesPlus.addEventListener('click', this.addExpensesBlock);
             incomePlus.addEventListener('click', this.addIncomeBlock);
