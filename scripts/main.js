@@ -1,37 +1,46 @@
 'use strict';
 
-let getRandom = function(){
+const getRandom = () => {
 	return  Math.floor(Math.random() * 101);
 };
 
-let isNumber = function(n){
-	return !isNaN(n) && isFinite(n);
+const isNumber = (n) => {
+	return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
-let game = function(){
-	let numberPC = getRandom();
+const game = () => {
+	const numberPC = getRandom();
+	let count = 10;
+	console.log(numberPC);
 	return function play(){
-		let numberUser = prompt('Угадай число от 1 до 100');
-		if(numberUser === null){//отмена ввода
-			alert('Игра окончена');
-			return '';
+		console.log('count =', count);
+		if(count < 1){
+			return confirm("Попытки закончились, хотите сыграть еще?") ? game()() : '';
 		}
-		if(!isNumber(numberUser)){//проверка ввода на формат числа
+		let numberUser = prompt('Угадай число от 1 до 100');
+		console.log('number=',numberUser);
+		if(numberUser === null){
+			alert('Игра окончена');
+			return;
+		}
+		if(!isNumber(numberUser)){
 			alert('Введи число!');
 			return play();
 		}
 		if(numberUser > numberPC){
-			alert('Загаданное число меньше');
+			count--;
+			alert('Загаданное число меньше, осталось попыток ' + count);
 			return play();
 		}
 		if(numberUser < numberPC){
-			alert('Загаданное число больше');
+			count--;
+			alert('Загаданное число больше, осталось попыток ' + count);
 			return play();
 		}
-		return alert('Поздравляю, Вы угадали!!!');
+		return confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?') ? game()() : '';
 	};
 };
 
-let game1 = game();
+const game1 = game();
 
 game1();
