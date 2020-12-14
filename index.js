@@ -47,26 +47,24 @@ let startBtn = document.getElementById('start'),
                 this.moneyDeposit = 0;
         }
         start(){
-            if(salaryAmount.value === ''){
-                startBtn.setAttribute('disabled','true');
-                return;
+            if(salaryAmount.value !== ''){
+                this.budget = +salaryAmount.value;
+                this.getExpenses();
+                this.getIncome();
+                this.getExpensesMonth();
+                this.getAddExpenses();
+                this.getAddIncome();
+                this.getInfoDeposit();
+                this.getBudget();
+                this.showResult();
+                inputListData = document.querySelector('.data').querySelectorAll('input[type=text]');
+                inputListData.forEach(item=>{
+                    item.readOnly = true;
+                });
+                startBtn.style.display = 'none';
+                resetBtn.style.display = 'block';
+                depositCheck.readOnly = true;
             }
-            this.budget = +salaryAmount.value;
-            this.getExpenses();
-            this.getIncome();
-            this.getExpensesMonth();
-            this.getAddExpenses();
-            this.getAddIncome();
-            this.getInfoDeposit();
-            this.getBudget();
-            this.showResult();
-            inputListData = document.querySelector('.data').querySelectorAll('input[type=text]');
-            inputListData.forEach(item=>{
-                item.readOnly = true;
-            });
-            startBtn.style.display = 'none';
-            resetBtn.style.display = 'block';
-            depositCheck.readOnly = true;
         }
         reset(){
             inputListData.forEach(item=>{
